@@ -20,15 +20,23 @@ public class DistanceTrigger : MonoBehaviour
     {
         float distance = Vector3.Distance(this.transform.position, target.position);
 
-        if(distance < activationDistance)
+        if(distance < activationDistance && timer <= 0)
         {
             Activate();
         }
+
+        if(timer > 0) timer -= Time.deltaTime;
     }
 
     private void Activate()
     {
         anim.SetTrigger(triggerName);
         timer = resetDelay;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(this.transform.position, activationDistance);
     }
 }
