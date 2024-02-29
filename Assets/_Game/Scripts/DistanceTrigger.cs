@@ -10,6 +10,7 @@ public class DistanceTrigger : MonoBehaviour
     private float timer;
 
     private Animator anim;
+    private AudioSource audioSource => GetComponentInChildren<AudioSource>();
 
     private void Start()
     {
@@ -31,6 +32,7 @@ public class DistanceTrigger : MonoBehaviour
     private void Activate()
     {
         anim.SetTrigger(triggerName);
+        audioSource.Play();
         timer = resetDelay;
     }
 
